@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import User, { IUser } from '../models/user';
 
-export const signUp = async (req: Request, res: Response): Promise<Response> => {
+export const signup = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body;
     const newUser = { email, password };
     const user: IUser = new User(newUser);
@@ -15,7 +15,7 @@ export const signUp = async (req: Request, res: Response): Promise<Response> => 
     return res.status(200).header('authorization', token).json({ savedUser });
 };
 
-export const signIn = async (req: Request, res: Response): Promise<Response> => {
+export const signin = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) return res.status(401).send("The email doesn't exist");

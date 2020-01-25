@@ -17,3 +17,9 @@ export const readProducts = async (req: Request, res: Response): Promise<Respons
     const products = await Product.find();
     return res.json({ products });
 };
+
+export async function readProduct(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    return res.json({ product });
+}
